@@ -8,6 +8,7 @@
 
 
 import random
+import numpy as np
 
 
 def My_list(n=100):
@@ -21,28 +22,34 @@ def Mediana(array):
     left_ = array[:middle]
     # array_copy = array.copy()
     if len(array) > 2:
-        n = 0
+        n = 1
         for i in array:
             for c in array:
                 if i < c:
                     n += 1
             # print(i, n, len(left_), n - len(left_))
-            if -1 <= n - len(left_) <= 1:
+            # if -1 <= n - len(left_) <= 1:
+            if n == len(left_) + 1:
                 # print(i)
                 return f'Медиана: {i}'
                 break
-            n = 0
+            n = 1
     else:
         return 'Список состоит из одного элемента'
 
 
 
-array = My_list(30)
+array = list(set(My_list(30)))
+random.shuffle(array)
+
 
 
 print(array)
 print(Mediana(array))
 
 print( '\n', '-'*200)
+middle = len(array) // 2
 print( sorted(array))
+print( sorted(array)[middle])
+print(np.median(array))
 
